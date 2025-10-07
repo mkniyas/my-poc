@@ -25,11 +25,19 @@ mongodb:
     heartbeatFrequency: 15000
     connectTimeout: 30000
     readTimeout: 30000
-  kafka:
-    bootstrap-servers: localhost:29092
-    consumer:
-      group-id: patientpoint-service-group
-      auto-offset-reset: earliest
+kafka:
+  enabled: true
+  client-id-prefix: ${spring.application.name}
+  bootstrap-servers: ${KAFKA_BROKER_URL:http://localhost:9092}
+  security:
+    enabled: true
+  poc-topics:
+    content: ${VAR_ENV_SHORT}.pub.content.content-publish
+    content-status: ${VAR_ENV_SHORT}.pub.content.ecc-content-publish-status  
+  poc-consumer-group:
+      content-publish-retract: ${VAR_ENV_SHORT}.${spring.application.name}.content-publish-retract
+      media-registration: ${VAR_ENV_SHORT}.${spring.application.name}.register-media
+    
 logging:
   structured:
     format:
@@ -47,3 +55,4 @@ logging:
   level:
     root: info
     com.ppt: info
+
