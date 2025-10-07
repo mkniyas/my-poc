@@ -1,0 +1,62 @@
+import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+    id "org.openapi.generator" version "${openApiGeneratorVersion}"
+    id "com.github.davidmc24.gradle.plugin.avro" version "${avroPluginVersion}"
+    id "org.sonarqube" version "${sonarqubeVersion}"
+    id "jacoco"
+    id "com.diffplug.spotless" version "${spotlessVersion}"
+}
+
+group = 'com.patientpoint'
+version = '0.0.1-SNAPSHOT'
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(javaVersion.toInteger())
+	}
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+
+    maven { url "https://packages.confluent.io/maven/" }
+    gradlePluginPortal()
+    google()
+    maven {
+        url "${artifactory_url}/pt-gradle-release-local"
+        credentials {
+            username = System.getenv('ARTIFACTORY_USER')
+            password = System.getenv('ARTIFACTORY_PASS')
+        }
+    }
+    maven {
+        url "${artifactory_url}/pt-gradle-snapshot-local"
+        credentials {
+            username = System.getenv('ARTIFACTORY_USER')
+            password = System.getenv('ARTIFACTORY_PASS')
+        }
+    }
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs("$buildDir/generated/openapi/src/main/java")
+		}
+	}
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'software.amazon.awssdk:s3:2.27.20'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+tasks.named('test') { useJUnitPlatform() }
