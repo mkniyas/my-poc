@@ -1,10 +1,8 @@
-import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
 plugins {
     id 'java'
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
     id "org.openapi.generator" version "${openApiGeneratorVersion}"
-    id "com.github.davidmc24.gradle.plugin.avro" version "${avroPluginVersion}"
     id "org.sonarqube" version "${sonarqubeVersion}"
     id "jacoco"
     id "com.diffplug.spotless" version "${spotlessVersion}"
@@ -54,9 +52,6 @@ sourceSets {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    implementation 'org.springframework.kafka:spring-kafka'
-    implementation 'software.amazon.awssdk:s3:2.27.20'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 tasks.named('test') { useJUnitPlatform() }
