@@ -36,7 +36,6 @@ spring:
     poc-consumer-group:
       content-publish-retract: ${VAR_ENV_SHORT}.${spring.application.name}.content-publish-retract
       media-registration: ${VAR_ENV_SHORT}.${spring.application.name}.register-media
-    
 logging:
   structured:
     format:
@@ -54,3 +53,12 @@ logging:
   level:
     root: info
     com.ppt: info
+kafka:
+  poc-topics:
+    ecc-content-publish-status: ${VAR_ENV_SHORT}.pub.content.ecc-content-publish-status
+    content-publish: ${VAR_ENV_SHORT}.pub.content.content-publish
+    ecc-content-publish-status-v2: ${VAR_ENV_SHORT}.pub.content.ecc-content-publish-status-v2
+  poc-consumer-group:
+    register-media: ${VAR_ENV_SHORT}.${spring.application.name}.register-media
+    content-publish-retract: ${VAR_ENV_SHORT}.${spring.application.name}.content-publish-retract
+    register-media-v2: register-media-v2-consumer
