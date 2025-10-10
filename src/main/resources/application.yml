@@ -26,17 +26,19 @@ spring:
         readTimeout: 30000
   kafka:
     enabled: true
+    enabled: true
     client-id-prefix: ${spring.application.name}
     bootstrap-servers: ${KAFKA_BROKER_URL:http://localhost:9092}
     security:
       enabled: true
     poc-topics:
-      content: ${VAR_ENV_SHORT}.pub.content.content-publish
-      content-status: ${VAR_ENV_SHORT}.pub.content.ecc-content-publish-status
+      content-publish: ${VAR_ENV_SHORT}.pub.content.content-publish
+      content.content-publish-v2: ${VAR_ENV_SHORT}.pub.content.content-publish-v2
+      ecc-content-publish-status: ${VAR_ENV_SHORT}.pub.content.ecc-content-publish-status
     poc-consumer-group:
       content-publish-retract: ${VAR_ENV_SHORT}.${spring.application.name}.content-publish-retract
-      media-registration: ${VAR_ENV_SHORT}.${spring.application.name}.register-media
-    
+      content-publish-v2: ${VAR_ENV_SHORT}.pub.content.content-publish-v2
+      register-media: ${VAR_ENV_SHORT}.${spring.application.name}.register-media
 logging:
   structured:
     format:
