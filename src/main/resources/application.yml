@@ -25,7 +25,7 @@ spring:
         connectTimeout: 30000
         readTimeout: 30000
   kafka:
-    enabled: true
+    enabled: false
     client-id-prefix: ${spring.application.name}
     bootstrap-servers: ${KAFKA_BROKER_URL:http://localhost:9092}
     security:
