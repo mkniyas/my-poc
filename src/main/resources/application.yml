@@ -54,3 +54,16 @@ logging:
   level:
     root: info
     com.ppt: info
+
+  kafka:
+
+    poc-consumer-group:
+      content-publish-retract: ${VAR_ENV_SHORT}.${spring.application.name}.content-publish-retract
+      content-publish-v2: ${VAR_ENV_SHORT}.pub.content.content-publish-v2
+      register-media: ${VAR_ENV_SHORT}.${spring.application.name}.register-media
+
+    poc-topics:
+      content-publish: ${VAR_ENV_SHORT}.pub.content.content-publish
+      content-publish-v2: ${VAR_ENV_SHORT}.pub.content.content-publish-v2
+      ecc-content-publish-status: ${VAR_ENV_SHORT}.pub.content.ecc-content-publish-status
+    enabled: true
