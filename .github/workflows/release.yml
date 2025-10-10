@@ -10,11 +10,11 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'
           cache: 'gradle'
       - name: Build
         run: ./gradlew build --no-daemon
       - name: Test
         run: ./gradlew test --no-daemon
       - name: Build Docker
-        run: docker build -t esc:1.0.0 .
+        run: docker build -t ecc .
