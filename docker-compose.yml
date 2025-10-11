@@ -2,7 +2,7 @@ version: '3.8'
 services:
   app:
     build: .
-    image: esc:1.0.0
+    image: poc-service:1.0.0
     ports: ["8080:8080"]
     depends_on:
       - mongo
