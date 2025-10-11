@@ -11,9 +11,7 @@ steps:
 - name: Check PR title validity
 id: title_check
 env:
-
 PR_TITLE: ${{ github.event.pull_request.title }}
-
 run: |
 echo "PR Title: $PR_TITLE"
 if [[ "$PR_TITLE" =~ ^\[(CS|CW)-[0-9]+\]\ .+ ]]; then
@@ -25,10 +23,8 @@ fi
 - name: Handle PR title comment
 uses: actions/github-script@v7
 env:
-
 PR_TITLE: ${{ github.event.pull_request.title }}
 IS_VALID: ${{ steps.title_check.outputs.valid }}
-
 with:
 script: |
 const identifier = '<!-- pr-title-check -->';
