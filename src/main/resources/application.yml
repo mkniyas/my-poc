@@ -37,6 +37,16 @@ spring:
       content-publish-retract: ${VAR_ENV_SHORT}.${spring.application.name}.content-publish-retract
       media-registration: ${VAR_ENV_SHORT}.${spring.application.name}.register-media
     
+    patientpoint-service-topics:
+      ecc-content-publish-status: ${VAR_ENV_SHORT}.pub.content.ecc-content-publish-status
+      content-publish: ${VAR_ENV_SHORT}.pub.content.content-publish
+      topic-new: ecc-topic-v2
+    patientpoint-service-consumer-group:
+      ecc-content-publish-status: patientpoint-service-ecc-content-publish-status-group
+      content-publish: patientpoint-service-content-publish-group
+      topic-new: patientpoint-service-topic-new-group
+      register-media: ${VAR_ENV_SHORT}.${spring.application.name}.register-media
+      content-publish-retract: ${VAR_ENV_SHORT}.${spring.application.name}.content-publish-retract
 logging:
   structured:
     format:
